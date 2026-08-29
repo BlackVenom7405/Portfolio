@@ -159,21 +159,28 @@ const Footer = () => {
           >
             <h4 className="text-[11px] font-mono font-bold text-cyan-500/80 tracking-[0.4em] uppercase">Broadcast_Link</h4>
             <div className="flex space-x-3">
-              {socialLinks.map((social) => (
+              {socialLinks.map((social, idx) => (
                 <motion.a
                   key={social.label}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -5, scale: 1.1 }}
-                  className={`relative w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl text-lg text-gray-300 ${social.color} transition-all duration-300 group`}
+                  whileHover={{ y: -6, scale: 1.18, rotate: idx % 2 === 0 ? -6 : 6 }}
+                  whileTap={{ scale: 0.9 }}
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ 
+                    y: { repeat: Infinity, duration: 3.5, delay: idx * 0.3, ease: "easeInOut" },
+                    scale: { type: "spring", stiffness: 300, damping: 15 }
+                  }}
+                  className={`relative w-11 h-11 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl text-xl text-gray-300 ${social.color} hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] backdrop-blur-md transition-all duration-300 group`}
                 >
-                  <div className="absolute inset-0 bg-cyan-600/0 group-hover:bg-cyan-600/5 blur-xl transition-all" />
-                  <div className="absolute inset-0 border border-cyan-500/0 group-hover:border-cyan-500/40 rounded-xl opacity-0 group-hover:opacity-100 transition-all scale-110 group-hover:scale-100" />
-                  {social.icon}
+                  <div className="absolute inset-0 bg-cyan-500/10 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative z-10 transition-transform group-hover:scale-110">
+                    {social.icon}
+                  </div>
                   
                   {/* Tooltip */}
-                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-cyan-600 text-white text-[8px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none tracking-widest font-bold">
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-cyan-600 text-white text-[8px] px-2.5 py-1 rounded opacity-0 group-hover:opacity-100 transition-all pointer-events-none tracking-widest font-mono font-bold shadow-lg whitespace-nowrap z-20">
                     {social.label}
                   </span>
                 </motion.a>
