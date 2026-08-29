@@ -69,6 +69,8 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
       const img = images.current[index];
 
       if (img && img.complete) {
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         // Responsive cover logic
@@ -93,8 +95,11 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
     };
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
       render();
     };
 

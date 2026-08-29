@@ -51,11 +51,19 @@ export default function Hero() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     
-    canvas.width = 1920;
-    canvas.height = 1080;
+    const resizeCanvas = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      render();
+    };
 
     const render = () => {
         if (!canvasRef.current || !imagesRef.current.length) return;
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // Clamp frame just in case
         let frameIdx = Math.round(seqRef.current.frame);
@@ -73,7 +81,8 @@ export default function Hero() {
         setCurrentFrameIdx(frameIdx);
     };
 
-    render(); // Draw initial 0th frame
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas(); // Draw initial frame & setup dimensions
 
     // --- 1. SYSTEM BOOT OPENING EXPERIENCE (Runs on Mount) ---
     const bootTl = gsap.timeline({ delay: 0.5 });
@@ -146,6 +155,7 @@ export default function Hero() {
     );
 
     return () => {
+        window.removeEventListener('resize', resizeCanvas);
         ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, [loaded]);

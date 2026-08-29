@@ -53,13 +53,18 @@ const Contact = () => {
 
     // Responsive Canvas Size
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
       render();
     };
 
     const render = () => {
       if (!canvas || !imagesRef.current.length) return;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       let frameIdx = Math.round(seqRef.current.frame);
