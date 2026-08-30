@@ -43,16 +43,19 @@ export default function ScanGridButton({
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
-      className={`relative inline-flex items-center justify-center px-6 py-2.5 overflow-hidden font-mono text-xs uppercase tracking-[0.3em] font-bold text-blue-400 bg-black/70 border border-blue-500/30 rounded-sm shadow-[0_0_15px_rgba(59,130,246,0.15)] group transition-all duration-300 ${className}`}
+      className={`relative inline-flex items-center justify-center px-6 py-2.5 overflow-hidden font-mono text-xs uppercase tracking-[0.3em] font-bold text-blue-400 bg-white/[0.07] backdrop-blur-md border border-white/20 hover:border-blue-400/60 rounded-sm shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] group transition-all duration-300 ${className}`}
       style={{
         boxShadow: isHovered
-          ? `0 0 25px ${color}50, inset 0 0 15px ${color}20`
+          ? `0 0 25px ${color}60, inset 0 0 15px ${color}30, 0 8px 32px 0 rgba(0, 0, 0, 0.37)`
           : undefined,
       }}
     >
+      {/* Glass Specular Reflection Highlight */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-blue-500/10 to-transparent pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+
       {/* Background Subtle Sci-Fi Grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+        className="absolute inset-0 pointer-events-none opacity-25 group-hover:opacity-50 transition-opacity duration-300"
         style={{
           backgroundImage: `linear-gradient(${gridColor} 1px, transparent 1px), linear-gradient(90deg, ${gridColor} 1px, transparent 1px)`,
           backgroundSize: "8px 8px",

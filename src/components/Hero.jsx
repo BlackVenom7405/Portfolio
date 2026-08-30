@@ -85,38 +85,38 @@ export default function Hero() {
     resizeCanvas(); // Draw initial frame & setup dimensions
 
     // --- 1. SYSTEM BOOT OPENING EXPERIENCE (Runs on Mount) ---
-    const bootTl = gsap.timeline({ delay: 0.5 });
+    const bootTl = gsap.timeline({ delay: 0.1 });
 
     // Boot visuals
-    bootTl.fromTo('.noise-overlay', { opacity: 0 }, { opacity: 0.15, duration: 1, ease: "none" }, 0);
-    bootTl.fromTo('.center-glow', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1.5, ease: "power1.inOut" }, 0.2);
+    bootTl.fromTo('.noise-overlay', { opacity: 0 }, { opacity: 0.15, duration: 0.6, ease: "none" }, 0);
+    bootTl.fromTo('.center-glow', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power1.inOut" }, 0.1);
     
     // Navbar slide in
-    bootTl.fromTo('nav', { y: -50, opacity: 0, filter: 'blur(10px)' }, { y: 0, opacity: 1, filter: 'blur(0)', duration: 1, ease: "power2.out" }, 0.5);
+    bootTl.fromTo('nav', { y: -50, opacity: 0, filter: 'blur(10px)' }, { y: 0, opacity: 1, filter: 'blur(0)', duration: 0.6, ease: "power2.out" }, 0.2);
 
     // Initial Face Reveal
-    bootTl.fromTo(canvas, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 1.5, ease: "power2.out" }, 0.8);
+    bootTl.fromTo(canvas, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 0.3);
     // Slowly play initial frames immediately
-    bootTl.to(seqRef.current, { frame: 10, snap: "frame", duration: 1.5, ease: "power1.inOut", onUpdate: render }, 0.8);
+    bootTl.to(seqRef.current, { frame: 10, snap: "frame", duration: 1.0, ease: "power1.inOut", onUpdate: render }, 0.3);
 
     // HUD Elements sequence
-    bootTl.fromTo('.hud-element', { opacity: 0 }, { opacity: 1, duration: 0.1, stagger: 0.1, ease: "none" }, 1.2);
+    bootTl.fromTo('.hud-element', { opacity: 0 }, { opacity: 1, duration: 0.1, stagger: 0.05, ease: "none" }, 0.35);
 
-    // Robotic Text Sequence
+    // Robotic Text Sequence (Appears Early)
     if (textContainerRef.current) {
-        // LEESHARK chars glitch/stagger in
-        bootTl.to('.title-char', { opacity: 1, x: 0, duration: 0.05, stagger: 0.05, ease: "none" }, 1.5);
+        // Title chars glitch/stagger in
+        bootTl.to('.title-char', { opacity: 1, x: 0, duration: 0.04, stagger: 0.03, ease: "none" }, 0.4);
         
-        // Full Stack Developer
-        bootTl.fromTo(roleWrapperRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "none" }, 2.0);
-        bootTl.fromTo('.role-underline', { scaleX: 0, transformOrigin: "left" }, { scaleX: 1, duration: 0.3, ease: "none" }, 2.2);
+        // Full Stack Developer / Role
+        bootTl.fromTo(roleWrapperRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.65);
+        bootTl.fromTo('.role-underline', { scaleX: 0, transformOrigin: "left" }, { scaleX: 1, duration: 0.25, ease: "power2.out" }, 0.75);
 
-        // Right Content
-        bootTl.fromTo(subtitleWrapperRef.current, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.3, ease: "none" }, 2.4);
-        bootTl.fromTo(highlightWrapperRef.current, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.2, ease: "none" }, 2.6);
+        // Subtitle Bio Sentence
+        bootTl.fromTo(subtitleWrapperRef.current, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out" }, 0.85);
+        bootTl.fromTo(highlightWrapperRef.current, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power2.out" }, 0.95);
 
         // Social Icons Bottom Left
-        bootTl.fromTo('.social-icon', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, stagger: 0.1, ease: "none" }, 2.8);
+        bootTl.fromTo('.social-icon', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, stagger: 0.05, ease: "none" }, 1.05);
     }
 
     // --- 2. MAIN SCROLL CONTINUATION ---
