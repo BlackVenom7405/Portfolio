@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import ScanGridButton from './originkit/ui/scan-grid-button';
 
 const navLinks = [
   { name: 'Home', href: '#' },
@@ -78,10 +79,14 @@ export default function Navbar() {
                   {isDarkMode ? <FiSun size={14} className="group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" /> : <FiMoon size={14} />}
                 </button>
 
-                {/* Hire Me Button */}
-                <a href="#contact" className="px-5 py-1.5 border border-white/20 text-white font-mono text-[9px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-500 rounded-sm">
-                    Hire Me
-                </a>
+                {/* Originkit Scan Grid Resume Button */}
+                <ScanGridButton 
+                  text="Resume" 
+                  href="/Bharath_Gowda_D_Resume.pdf" 
+                  download="Bharath_Gowda_D_Resume.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                />
             </div>
           </div>
 
@@ -126,9 +131,13 @@ export default function Navbar() {
             </li>
           ))}
           <li className={`pt-6 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${navLinks.length * 100}ms` }}>
-            <button className="px-12 py-3 border border-white/20 text-white font-mono text-[10px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all rounded-sm">
-                Hire Me
-            </button>
+            <ScanGridButton 
+              text="Resume" 
+              href="/Bharath_Gowda_D_Resume.pdf" 
+              download="Bharath_Gowda_D_Resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+            />
           </li>
         </ul>
         

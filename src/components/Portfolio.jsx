@@ -1,6 +1,7 @@
 import React from "react";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { motion } from "framer-motion";
+import LabelSlideButton from "./originkit/ui/label-slide-button";
 
 const projectData = [
   {
@@ -111,26 +112,12 @@ const Portfolio = () => {
               </div>
             </div>
 
-            <div className="p-8 pt-0 flex gap-4">
-              <a 
-                href={project.github} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                aria-label="Github Repository" 
-                className="flex-1 flex items-center justify-center space-x-2 py-3 px-4 bg-white/5 text-white rounded-xl hover:bg-blue-600 transition-all border border-white/10 font-mono text-xs"
-              >
-                <FiGithub size={18} />
-                <span>Repository</span>
-              </a>
-              <a 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                aria-label="Live Demo / GitHub" 
-                className="p-3 bg-white/5 text-white rounded-xl hover:bg-blue-600 transition-all border border-white/10"
-              >
-                <FiExternalLink size={18} />
-              </a>
+            <div className="p-8 pt-0">
+              <LabelSlideButton 
+                text="Repository"
+                href={project.github}
+                className="w-full justify-center py-3"
+              />
             </div>
           </motion.div>
         ))}

@@ -10,6 +10,7 @@ import {
   SiGit,
   SiVite 
 } from "react-icons/si";
+import LiquidCarveButton from './originkit/ui/liquid-carve-button';
 
 export default function About() {
   const Aboutdata = [
@@ -51,7 +52,7 @@ export default function About() {
         {/* --- STATIC FRAME IMAGE (LEFT 45%) --- */}
         <div className="absolute inset-y-0 left-0 w-[45%] z-10 pointer-events-none overflow-hidden hidden lg:block" style={{ WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)', maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)' }}>
             <img 
-               src="/images/ezgif-frame-240.jpg" 
+               src="/images/ezgif-frame-042.jpg" 
                alt="About Profile" 
                className="w-full h-full object-cover opacity-50 grayscale" 
             />
@@ -113,16 +114,15 @@ export default function About() {
                     </div>
                 </div>
 
-                {/* CTA */}
+                {/* CTA with Originkit Liquid Carve Button Effect */}
                 <div className="pt-6">
-                    <a 
-                        href="/Bharath_Gowda_D_Resume.pdf" 
-                        download="Bharath_Gowda_D_Resume.pdf"
-                        className="inline-flex items-center space-x-6 px-12 py-4 bg-blue-600 text-white font-bold text-xs uppercase tracking-widest hover:bg-blue-700 transition-all duration-300 rounded-full shadow-lg shadow-blue-900/20"
-                    >
-                        <span>Download Resume</span>
-                        <FiDownload size={16} />
-                    </a>
+                    <LiquidCarveButton 
+                      text="Download Resume"
+                      href="/Bharath_Gowda_D_Resume.pdf"
+                      download="Bharath_Gowda_D_Resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    />
                 </div>
             </div>
         </div>
